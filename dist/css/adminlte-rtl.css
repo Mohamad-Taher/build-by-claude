@@ -1,0 +1,139 @@
+/* =====================================================================
+   RTL layout overrides for AdminLTE 3 (loaded only when lang = ar / ku).
+   AdminLTE 3 ships no official RTL build, so this flips the main layout:
+   sidebar to the right, content margins mirrored, dropdowns/text aligned.
+   ===================================================================== */
+
+body { direction: rtl; text-align: right; }
+
+/* ---------------- Sidebar on the right ------------------------------- */
+.main-sidebar {
+    right: 0;
+    left: auto;
+}
+body:not(.sidebar-collapse) .main-sidebar,
+body.sidebar-open .main-sidebar {
+    transform: translate(0, 0);
+}
+body.sidebar-collapse .main-sidebar {
+    /* collapsed mini-sidebar stays docked right */
+    margin-right: 0;
+}
+body.sidebar-collapse.sidebar-mini .main-sidebar:not(:hover) {
+    width: 4.6rem;
+}
+
+/* Content + header + footer mirrored away from the right sidebar */
+.content-wrapper,
+.main-header,
+.main-footer {
+    margin-left: 0 !important;
+    margin-right: 250px;
+    transition: margin-right 0.3s ease-in-out;
+}
+body.sidebar-collapse .content-wrapper,
+body.sidebar-collapse .main-header,
+body.sidebar-collapse .main-footer {
+    margin-right: 4.6rem;
+}
+@media (max-width: 991.98px) {
+    .content-wrapper, .main-header, .main-footer {
+        margin-right: 0;
+    }
+}
+
+/* ---------------- Sidebar nav internals ------------------------------ */
+.nav-sidebar .nav-icon {
+    margin-left: 0.5rem;
+    margin-right: 0.2rem;
+}
+.nav-sidebar .nav-link > .right,
+.nav-sidebar .nav-link > p > .right {
+    left: 1rem;
+    right: auto;
+}
+.nav-treeview > .nav-item > .nav-link {
+    padding-right: 2rem;
+    padding-left: 0.5rem;
+}
+.brand-link .brand-image {
+    margin-left: 0.5rem;
+    margin-right: 0;
+    float: right;
+}
+.user-panel .image { padding-right: 0.8rem; padding-left: 0; }
+
+/* ---------------- Navbar / dropdowns ---------------------------------- */
+.navbar-nav { padding-right: 0; }
+.dropdown-menu-right { right: auto; left: 0; }
+.navbar .dropdown-menu { text-align: right; }
+
+/* ---------------- Bootstrap utility mirroring ------------------------- */
+.ml-auto { margin-left: 0 !important; margin-right: auto !important; }
+.mr-auto { margin-right: 0 !important; margin-left: auto !important; }
+.mr-1, .mx-1 { margin-right: 0 !important; margin-left: 0.25rem !important; }
+.mr-2, .mx-2 { margin-right: 0 !important; margin-left: 0.5rem !important; }
+.mr-3, .mx-3 { margin-right: 0 !important; margin-left: 1rem !important; }
+.ml-1 { margin-left: 0 !important; margin-right: 0.25rem !important; }
+.ml-2 { margin-left: 0 !important; margin-right: 0.5rem !important; }
+.ml-3 { margin-left: 0 !important; margin-right: 1rem !important; }
+.float-right { float: left !important; }
+.float-left  { float: right !important; }
+.text-right  { text-align: left !important; }
+.text-left   { text-align: right !important; }
+
+/* ---------------- Breadcrumb ------------------------------------------ */
+.breadcrumb-item + .breadcrumb-item::before {
+    transform: scaleX(-1);
+}
+.breadcrumb-item + .breadcrumb-item {
+    padding-right: 0.5rem;
+    padding-left: 0;
+}
+
+/* ---------------- Cards / forms --------------------------------------- */
+.card-tools { float: left; margin-left: 0; margin-right: auto; }
+.card-title { float: right; }
+.input-group > .input-group-prepend > .input-group-text {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+.input-group > .form-control:not(:first-child) {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+label { text-align: right; }
+
+/* Custom checkbox/radio: indicator on the right of the label */
+.custom-control {
+    padding-left: 0;
+    padding-right: 1.5rem;
+}
+.custom-control-label::before,
+.custom-control-label::after {
+    left: auto;
+    right: -1.5rem;
+}
+
+/* ---------------- Tables / DataTables --------------------------------- */
+.table th, .table td { text-align: right; }
+div.dataTables_wrapper div.dataTables_filter { text-align: left; }
+div.dataTables_wrapper div.dataTables_filter input { margin-right: 0.5em; margin-left: 0; }
+div.dataTables_wrapper div.dataTables_length { text-align: right; }
+div.dataTables_wrapper div.dataTables_paginate { text-align: left; }
+
+/* ---------------- Modals ----------------------------------------------- */
+.modal-header .close { margin: -1rem auto -1rem -1rem; }
+.modal-footer { justify-content: flex-start; }
+
+/* ---------------- Select2 ---------------------------------------------- */
+.select2-container--bootstrap4 .select2-selection__rendered { text-align: right; }
+.select2-container--bootstrap4 .select2-selection--single .select2-selection__arrow {
+    left: 3px;
+    right: auto;
+}
+.select2-results__option { text-align: right; }
+
+/* Keep numbers/latin fragments readable inside RTL text */
+.ltr-nums, .money, td.money {
+    direction: ltr;
+    unicode-bidi: embed;
+}

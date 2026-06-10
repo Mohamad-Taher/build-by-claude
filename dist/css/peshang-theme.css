@@ -1,0 +1,140 @@
+/* =====================================================================
+   Peshang AI brand theme — overrides AdminLTE 3 (default theme)
+   Palette:
+     primary purple  #8A3FFC   light purple #B06CFF
+     primary blue    #2F80ED   light blue   #56A3FF
+     dark navy       #0B1A3A
+   ===================================================================== */
+
+:root {
+    --pesh-purple:       #8A3FFC;
+    --pesh-purple-light: #B06CFF;
+    --pesh-blue:         #2F80ED;
+    --pesh-blue-light:   #56A3FF;
+    --pesh-navy:         #0B1A3A;
+    --pesh-navy-light:   #14264F;
+}
+
+/* ---------------- Sidebar: dark navy with purple accents ------------- */
+body.theme-peshang .main-sidebar {
+    background: linear-gradient(180deg, var(--pesh-navy) 0%, #0E2148 100%);
+}
+body.theme-peshang .brand-link {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(176, 108, 255, 0.25);
+    color: #fff;
+}
+body.theme-peshang .sidebar .user-panel {
+    border-bottom: 1px solid rgba(176, 108, 255, 0.15);
+}
+body.theme-peshang .sidebar .user-panel .info a,
+body.theme-peshang .nav-sidebar .nav-link {
+    color: #C9D4F0;
+}
+body.theme-peshang .nav-sidebar .nav-link:hover {
+    background: rgba(138, 63, 252, 0.18);
+    color: #fff;
+}
+body.theme-peshang .nav-sidebar > .nav-item > .nav-link.active,
+body.theme-peshang .nav-sidebar .nav-treeview > .nav-item > .nav-link.active {
+    background: linear-gradient(90deg, var(--pesh-purple) 0%, var(--pesh-blue) 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(138, 63, 252, 0.45);
+}
+
+/* ---------------- Navbar --------------------------------------------- */
+body.theme-peshang .main-header.navbar {
+    background: #fff;
+    border-bottom: 2px solid var(--pesh-purple);
+}
+
+/* ---------------- Buttons -------------------------------------------- */
+body.theme-peshang .btn-primary {
+    background: linear-gradient(90deg, var(--pesh-purple) 0%, var(--pesh-blue) 100%);
+    border-color: var(--pesh-purple);
+}
+body.theme-peshang .btn-primary:hover,
+body.theme-peshang .btn-primary:focus {
+    background: linear-gradient(90deg, #7A2FF0 0%, #2670D6 100%);
+    border-color: #7A2FF0;
+    box-shadow: 0 0 0 0.2rem rgba(138, 63, 252, 0.35);
+}
+body.theme-peshang .btn-info {
+    background-color: var(--pesh-blue);
+    border-color: var(--pesh-blue);
+}
+body.theme-peshang .btn-info:hover {
+    background-color: #2670D6;
+    border-color: #2670D6;
+}
+
+/* ---------------- Links / text accents ------------------------------- */
+body.theme-peshang a { color: var(--pesh-blue); }
+body.theme-peshang a:hover { color: var(--pesh-purple); }
+body.theme-peshang .text-primary { color: var(--pesh-purple) !important; }
+
+/* ---------------- Cards ---------------------------------------------- */
+body.theme-peshang .card-primary:not(.card-outline) > .card-header {
+    background: linear-gradient(90deg, var(--pesh-purple) 0%, var(--pesh-blue) 100%);
+}
+body.theme-peshang .card-primary.card-outline { border-top-color: var(--pesh-purple); }
+body.theme-peshang .card-info:not(.card-outline) > .card-header { background: var(--pesh-blue); }
+body.theme-peshang .card-info.card-outline { border-top-color: var(--pesh-blue); }
+
+/* ---------------- Small boxes / info boxes --------------------------- */
+body.theme-peshang .small-box.bg-primary,
+body.theme-peshang .info-box .bg-primary {
+    background: linear-gradient(135deg, var(--pesh-purple) 0%, var(--pesh-purple-light) 100%) !important;
+    color: #fff !important;
+}
+body.theme-peshang .small-box.bg-info,
+body.theme-peshang .info-box .bg-info {
+    background: linear-gradient(135deg, var(--pesh-blue) 0%, var(--pesh-blue-light) 100%) !important;
+    color: #fff !important;
+}
+body.theme-peshang .small-box.bg-navy {
+    background: linear-gradient(135deg, var(--pesh-navy) 0%, var(--pesh-navy-light) 100%) !important;
+    color: #fff !important;
+}
+
+/* ---------------- Badges --------------------------------------------- */
+body.theme-peshang .badge-primary { background-color: var(--pesh-purple); }
+body.theme-peshang .badge-info    { background-color: var(--pesh-blue); }
+
+/* ---------------- Forms: focus + Select2 ------------------------------ */
+body.theme-peshang .form-control:focus,
+body.theme-peshang .custom-select:focus {
+    border-color: var(--pesh-purple-light);
+    box-shadow: 0 0 0 0.2rem rgba(138, 63, 252, 0.2);
+}
+body.theme-peshang .select2-container--bootstrap4 .select2-results__option--highlighted {
+    background-color: var(--pesh-purple);
+}
+body.theme-peshang .select2-container--bootstrap4
+    .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--pesh-purple);
+    border-color: var(--pesh-purple);
+}
+
+/* ---------------- Pagination / DataTables ----------------------------- */
+body.theme-peshang .page-item.active .page-link {
+    background-color: var(--pesh-purple);
+    border-color: var(--pesh-purple);
+}
+body.theme-peshang .page-link { color: var(--pesh-blue); }
+
+/* ---------------- Custom checkboxes/switches -------------------------- */
+body.theme-peshang .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: var(--pesh-purple);
+    border-color: var(--pesh-purple);
+}
+
+/* ---------------- Login page ------------------------------------------ */
+body.theme-peshang.login-page {
+    background: linear-gradient(135deg, var(--pesh-navy) 0%, #1B1140 60%, #2A1458 100%);
+}
+body.theme-peshang.login-page .login-logo a { color: #fff; font-weight: 600; }
+body.theme-peshang.login-page .card {
+    border-top: 3px solid var(--pesh-purple);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
