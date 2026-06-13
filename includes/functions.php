@@ -115,3 +115,100 @@ function json_response(bool $success, string $message = '', array $extra = []): 
         JSON_UNESCAPED_UNICODE);
     exit;
 }
+
+// ----------------------------------------------------------------------
+// Car status pipeline helpers
+// ----------------------------------------------------------------------
+
+/** Ordered list of car pipeline statuses (matches the tbl_cars ENUM). */
+function car_statuses(): array
+{
+    return ['purchased', 'paid', 'shipped', 'in_transit', 'at_port', 'cleared', 'in_showroom', 'sold'];
+}
+
+/** AdminLTE badge color for a car status. */
+function status_badge_class(string $status): string
+{
+    return [
+        'purchased'   => 'secondary',
+        'paid'        => 'info',
+        'shipped'     => 'primary',
+        'in_transit'  => 'warning',
+        'at_port'     => 'warning',
+        'cleared'     => 'info',
+        'in_showroom' => 'success',
+        'sold'        => 'success',
+    ][$status] ?? 'secondary';
+}
+
+/** Rendered status badge (translated label + colored badge). */
+function status_badge(string $status): string
+{
+    return '<span class="badge badge-' . status_badge_class($status) . '">'
+         . e(t('status_' . $status)) . '</span>';
+}
+
+// ----------------------------------------------------------------------
+// Landed cost
+// ----------------------------------------------------------------------
+
+/** Total landed cost of a car in base currency = SUM(amount_base) of its cost lines. */
+function car_landed_cost(int $carId): float
+{
+    $stmt = db()->prepare(
+        'SELECT COALESCE(SUM(amount_base), 0) AS total
+           FROM tbl_car_costs
+          WHERE car_id = ? AND deleted_at IS NULL'
+    );
+    $stmt->execute([$carId]);
+    return (float)$stmt->fetch()['total'];
+}
+
+// ----------------------------------------------------------------------
+// File uploads (invoice attachments / photos) — images + PDF only
+// ----------------------------------------------------------------------
+
+/**
+ * Validate and store an uploaded file under /uploads with a unique name.
+ * Returns the stored relative path, or null when no file was submitted.
+ * Throws RuntimeException (message = a t() key) on a rejected/failed upload.
+ */
+function handle_upload(string $field): ?string
+{
+    if (empty($_FILES[$field]) || ($_FILES[$field]['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+        return null;
+    }
+    $f = $_FILES[$field];
+    if ($f['error'] !== UPLOAD_ERR_OK) {
+        throw new RuntimeException('upload_failed');
+    }
+
+    // Whitelist by extension AND verified MIME type
+    $allowed = [
+        'jpg'  => 'image/jpeg',
+        'jpeg' => 'image/jpeg',
+        'png'  => 'image/png',
+        'gif'  => 'image/gif',
+        'pdf'  => 'application/pdf',
+    ];
+    $ext = strtolower(pathinfo($f['name'], PATHINFO_EXTENSION));
+    if (!isset($allowed[$ext])) {
+        throw new RuntimeException('invalid_file');
+    }
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime  = finfo_file($finfo, $f['tmp_name']);
+    finfo_close($finfo);
+    if (!in_array($mime, $allowed, true)) {
+        throw new RuntimeException('invalid_file');
+    }
+
+    if (!is_dir(UPLOAD_PATH) && !mkdir(UPLOAD_PATH, 0775, true) && !is_dir(UPLOAD_PATH)) {
+        throw new RuntimeException('upload_failed');
+    }
+    $name = bin2hex(random_bytes(8)) . '_' . time() . '.' . $ext;
+    $dest = UPLOAD_PATH . '/' . $name;
+    if (!move_uploaded_file($f['tmp_name'], $dest)) {
+        throw new RuntimeException('upload_failed');
+    }
+    return UPLOAD_URL . '/' . $name;
+}
