@@ -55,6 +55,23 @@ return [
     'cars_by_status'       => 'السيارات حسب الحالة',
     'total_cars'           => 'إجمالي السيارات',
 
+    // Module names (mirror tbl_pages labels) + placeholder
+    'cars'                 => 'السيارات',
+    'shipments'            => 'الشحنات',
+    'customers'            => 'العملاء',
+    'sales'                => 'المبيعات',
+    'payments'             => 'الدفعات',
+    'spending'             => 'المصروفات',
+    'invoices'             => 'الفواتير',
+    'currencies'           => 'العملات',
+    'profit_report'        => 'تقرير الأرباح',
+    'monthly_report'       => 'التقرير الشهري',
+    'settings'             => 'الإعدادات',
+    'audit_log'            => 'سجل التدقيق',
+    'phase'                => 'المرحلة',
+    'under_construction'   => 'قيد الإنشاء',
+    'coming_soon_text'     => 'ستتوفر هذه الصفحة في مرحلة لاحقة من البناء.',
+
     // Users
     'users'                => 'المستخدمون',
     'user'                 => 'المستخدم',

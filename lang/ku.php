@@ -55,6 +55,23 @@ return [
     'cars_by_status'       => 'ترومبێل ل دویڤ بارودۆخی',
     'total_cars'           => 'گشتیا ترومبێلان',
 
+    // Module names (mirror tbl_pages labels) + placeholder
+    'cars'                 => 'ترومبێل',
+    'shipments'            => 'بارکرن',
+    'customers'            => 'موشتەری',
+    'sales'                => 'فرۆتن',
+    'payments'             => 'پارەدان',
+    'spending'             => 'خەرجی',
+    'invoices'             => 'پسوولە',
+    'currencies'           => 'دراڤ',
+    'profit_report'        => 'ڕاپۆرتا قازانجێ',
+    'monthly_report'       => 'ڕاپۆرتا هەیڤانە',
+    'settings'             => 'ڕێکخستن',
+    'audit_log'            => 'تۆمارا چاڤدێریێ',
+    'phase'                => 'قۆناغ',
+    'under_construction'   => 'ل بن چێکرنێ دایە',
+    'coming_soon_text'     => 'ئەڤ پەڕە دێ د قۆناغەکا داهاتی دا بەردەست بیت.',
+
     // Users
     'users'                => 'بکارهێنەر',
     'user'                 => 'بکارهێنەر',

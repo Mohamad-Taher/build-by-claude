@@ -55,6 +55,23 @@ return [
     'cars_by_status'       => 'Cars by Status',
     'total_cars'           => 'Total Cars',
 
+    // Module names (mirror tbl_pages labels) + placeholder
+    'cars'                 => 'Cars',
+    'shipments'            => 'Shipments',
+    'customers'            => 'Customers',
+    'sales'                => 'Sales',
+    'payments'             => 'Payments',
+    'spending'             => 'Spending',
+    'invoices'             => 'Invoices',
+    'currencies'           => 'Currencies',
+    'profit_report'        => 'Profit Report',
+    'monthly_report'       => 'Monthly Report',
+    'settings'             => 'Settings',
+    'audit_log'            => 'Audit Log',
+    'phase'                => 'Phase',
+    'under_construction'   => 'Under construction',
+    'coming_soon_text'     => 'This module will be available in an upcoming build phase.',
+
     // Users
     'users'                => 'Users',
     'user'                 => 'User',
